@@ -1,0 +1,148 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMX2m6g2xQMmJolmN9L2LjZ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/abhiniveshg0-max/DEEP-LEARNING/blob/main/Experiment%206%20part%20b\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 4,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ac2k6B8gYCbt",
+        "outputId": "a02a0d77-e494-4403-acb0-a78e941490df"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Roll No: YOUR_ROLL_NO\n",
+            "Vocabulary Size: 10000\n",
+            "Embedding Dimension: 128\n",
+            "Input Shape: (5, 200)\n",
+            "Embedding Output Shape: (5, 200, 128)\n",
+            "\n",
+            "Embedding Representation of First Review:\n",
+            "tf.Tensor(\n",
+            "[[ 0.0188203   0.04443024  0.0274526  ... -0.01855922  0.01328056\n",
+            "  -0.03197795]\n",
+            " [ 0.02757397  0.04549802 -0.00473504 ... -0.03612166 -0.03013702\n",
+            "  -0.04003797]\n",
+            " [-0.01679572  0.01255002  0.04427637 ... -0.01374435  0.03219878\n",
+            "  -0.02337866]\n",
+            " ...\n",
+            " [ 0.00620496  0.02101663 -0.04104872 ...  0.00893432  0.02096126\n",
+            "  -0.02860034]\n",
+            " [ 0.04692868 -0.00597501  0.00362957 ... -0.04774647 -0.0383903\n",
+            "   0.02334157]\n",
+            " [ 0.03114908  0.03933439 -0.0185177  ...  0.00162369 -0.01357943\n",
+            "   0.0229742 ]], shape=(200, 128), dtype=float32)\n",
+            "\n",
+            "Embedding Vector of First Token:\n",
+            "tf.Tensor(\n",
+            "[ 0.0188203   0.04443024  0.0274526   0.02807058 -0.00331144  0.04173794\n",
+            "  0.03788272 -0.02577584 -0.01916609 -0.01601933 -0.00036852  0.03532653\n",
+            "  0.03641209 -0.01501198  0.00855467 -0.02092907  0.00051122  0.03787934\n",
+            " -0.04124919 -0.0391021   0.00111245  0.03746387  0.01525465  0.02976663\n",
+            " -0.02221638  0.0140311  -0.03127819  0.02968467  0.01237841  0.02161416\n",
+            "  0.0222184   0.04184897 -0.01961276  0.04602177  0.04732857  0.00749917\n",
+            " -0.0074656  -0.01852181 -0.00931872 -0.00179404  0.0063683   0.04269674\n",
+            " -0.01113342  0.00191439 -0.01364626 -0.04020901  0.01555211 -0.03568597\n",
+            " -0.0131137   0.00943581  0.02517751 -0.00848708 -0.00572151  0.04878708\n",
+            " -0.02367171 -0.02130117  0.02632092 -0.014197    0.03238677 -0.03307631\n",
+            "  0.01913336  0.03811589 -0.00692495 -0.02685052  0.04905308  0.04368884\n",
+            "  0.01878199  0.00719085  0.04625801 -0.04981114  0.04027146 -0.03182518\n",
+            "  0.00286994  0.02979026  0.04906768  0.0446896   0.03779807 -0.04049001\n",
+            "  0.02861488  0.00920367  0.01228606 -0.03239532 -0.01510453  0.0263533\n",
+            "  0.04742445 -0.03983296 -0.02444072 -0.02660086 -0.02702798 -0.03246566\n",
+            "  0.00765055  0.01112518  0.00153095  0.00539397  0.04364019 -0.04411983\n",
+            "  0.03435892  0.00574827  0.01336583 -0.0138091   0.04981983 -0.04199656\n",
+            " -0.00278497 -0.03208783 -0.0192915  -0.04993982 -0.00300369  0.00697565\n",
+            "  0.00315254  0.03154316  0.02775674  0.03916102  0.04880133 -0.04545225\n",
+            " -0.03676679  0.01875402  0.02577137  0.00247967 -0.04908048 -0.03827681\n",
+            " -0.00887498  0.01334846 -0.01383571 -0.03574408  0.04925653 -0.01855922\n",
+            "  0.01328056 -0.03197795], shape=(128,), dtype=float32)\n",
+            "\n",
+            "Embedding Vector Shape:\n",
+            "(128,)\n",
+            "\n",
+            "Embedding Layer Parameters:\n",
+            "1280000\n"
+          ]
+        }
+      ],
+      "source": [
+        "import tensorflow as tf\n",
+        "import numpy as np\n",
+        "from tensorflow.keras.layers import Embedding\n",
+        "from tensorflow.keras.datasets import imdb\n",
+        "from tensorflow.keras.preprocessing.sequence import pad_sequences\n",
+        "\n",
+        "ROLL_NO = \"YOUR_ROLL_NO\"\n",
+        "\n",
+        "vocab_size = 10000\n",
+        "embedding_dim = 128\n",
+        "max_length = 200\n",
+        "\n",
+        "# Load the IMDB dataset\n",
+        "(x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=vocab_size)\n",
+        "\n",
+        "# Pad sequences to ensure they match max_length\n",
+        "x_train = pad_sequences(x_train, maxlen=max_length)\n",
+        "\n",
+        "# Define the embedding layer without the deprecated input_length argument\n",
+        "embedding_layer = Embedding(\n",
+        "    input_dim=vocab_size,\n",
+        "    output_dim=embedding_dim\n",
+        ")\n",
+        "\n",
+        "sample_input = x_train[:5]\n",
+        "\n",
+        "embedding_output = embedding_layer(sample_input)\n",
+        "\n",
+        "print(\"Roll No:\", ROLL_NO)\n",
+        "print(\"Vocabulary Size:\", vocab_size)\n",
+        "print(\"Embedding Dimension:\", embedding_dim)\n",
+        "print(\"Input Shape:\", sample_input.shape)\n",
+        "print(\"Embedding Output Shape:\", embedding_output.shape)\n",
+        "\n",
+        "print(\"\\nEmbedding Representation of First Review:\")\n",
+        "print(embedding_output[0])\n",
+        "\n",
+        "print(\"\\nEmbedding Vector of First Token:\")\n",
+        "print(embedding_output[0][0])\n",
+        "\n",
+        "print(\"\\nEmbedding Vector Shape:\")\n",
+        "print(embedding_output[0][0].shape)\n",
+        "\n",
+        "print(\"\\nEmbedding Layer Parameters:\")\n",
+        "print(embedding_layer.count_params())"
+      ]
+    }
+  ]
+}
